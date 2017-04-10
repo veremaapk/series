@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<item>
+<title>[COLOR blue]Sala 1[/COLOR] </title>
+<link>$doregex[makelist2]</link>
+<regex>
+  <name>makelist2</name>
+  <listrepeat><![CDATA[
+        <title>[COLOR blue][makelist2.param1][/COLOR] </title>
+        <link>$doregex[makelist]</link>
+		<thumbnail>http://veremaspain.hol.es/addon/2vj3NGE.png</thumbnail>
+        <fanart>http://veremaspain.hol.es/addon/iXATBaG.jpg</fanart>
+        ]]></listrepeat>
+<expres>estre:"(.*?)" src="(.*?)"</expres>
+<page>https://raw.githubusercontent.com/Carlesto/Peliculas/master/Copiapopnew/terror.txt</page>
+<cookieJar></cookieJar>
+</regex>
+
+<regex>
+  <name>makelist</name>
+  <listrepeat><![CDATA[
+        <title>[COLOR blue][makelist.param2][/COLOR] </title>
+        <link>$doregex[getUrl]</link>
+		<thumbnail>http://veremaspain.hol.es/addon/2vj3NGE.png</thumbnail>
+        <fanart>http://veremaspain.hol.es/addon/iXATBaG.jpg</fanart>
+        ]]></listrepeat>
+<expres><![CDATA[class="name[\w\W\s]{0,35}href="(.*?)"[\w\W\s]{0,50}preview">(.*?)<]]></expres>
+<page>[makelist2.param2]</page>
+<cookieJar></cookieJar>
+</regex>
+
+<regex>
+<name>getUrl</name>
+<expres><![CDATA[#$pyFunction
+import re , requests ,json
+def GetLSProData(page_data,Cookie_Jar,m):
+
+ ref = 'http://copiapop.com/' 
+ url='http://copiapop.com[makelist.param1]'
+ headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux i686; rv:42.0) Gecko/20100101 Firefox/42.0 Iceweasel/42.0', 'Referer': ref ,
+            'X-Requested-With' : 'XMLHttpRequest' , 'Accept' : '*/*'}
+ session = requests.Session()
+ r = session.get(url, headers=headers)
+ rv1 = r.cookies
+
+ vfile , vtoken = re.findall('action/DownloadFile.*?fileId.*?value="(.*?)".*?Token".*?value="(.*?)"', r.text)[0]
+ data_a ={'fileId': vfile , '__RequestVerificationToken': vtoken}
+ nr = requests.post('http://copiapop.com/action/DownloadFile?location=fi&f=%s'%vfile , headers=headers,cookies=rv1 , data=data_a).text
+ nrj=json.loads(nr)
+ nr = nrj['Content']
+ r2 = re.findall(r'(?s)value=\"(.*?)\"', nr)[0]
+ data_a ={'__RequestVerificationToken': r2 , 'Username': 'amistad' , 'Password' : 'asegurada'}
+ nr1 = requests.post('http://copiapop.com/action/Account/Login', headers=headers,cookies = rv1 , data=data_a)
+ print nr1.headers['Set-Cookie']
+ rasp = re.findall('ASPXAUTH_v2=(.*?);', nr1.headers['Set-Cookie'])[0]
+ rv1['.ASPXAUTH_v2'] = rasp
+ data_a ={'fileId': vfile , '__RequestVerificationToken': vtoken}
+ nr3 = requests.post('http://copiapop.com/action/DownloadFile?location=fi&f=%s'%vfile , headers=headers, cookies = rv1 , data=data_a).text
+ r3 = re.findall('DownloadUrl":"(.*?)"', nr3)[0]
+ print r3
+ return r3
+]]></expres>
+<page></page>
+<cookieJar></cookieJar>
+</regex>
+<thumbnail>http://veremaspain.hol.es/addon/2vj3NGE.png</thumbnail>
+<fanart>http://veremaspain.hol.es/addon/iXATBaG.jpg</fanart>
+</item>	
+
+<item>
+<title>[COLOR blue]Sala 2[/COLOR] </title>
+<link>$doregex[makelist2]</link>
+<regex>
+  <name>makelist2</name>
+  <listrepeat><![CDATA[
+        <title>[COLOR blue][makelist2.param1][/COLOR] </title>
+        <link>$doregex[makelist]</link>
+		<thumbnail>http://veremaspain.hol.es/addon/2vj3NGE.png</thumbnail>
+        <fanart>http://veremaspain.hol.es/addon/iXATBaG.jpg</fanart>
+        ]]></listrepeat>
+<expres>ami:"(.*?)" src="(.*?)"</expres>
+<page>https://raw.githubusercontent.com/Carlesto/Peliculas/master/Copiapopnew/terror.txt</page>
+<cookieJar></cookieJar>
+</regex>
+
+<regex>
+  <name>makelist</name>
+  <listrepeat><![CDATA[
+        <title>[COLOR blue][makelist.param2][/COLOR] </title>
+        <link>$doregex[getUrl]</link>
+		<thumbnail>http://veremaspain.hol.es/addon/2vj3NGE.png</thumbnail>
+        <fanart>http://veremaspain.hol.es/addon/iXATBaG.jpg</fanart>
+        ]]></listrepeat>
+<expres><![CDATA[class="name[\w\W\s]{0,35}href="(.*?)"[\w\W\s]{0,50}preview">(.*?)<]]></expres>
+<page>[makelist2.param2]</page>
+<cookieJar></cookieJar>
+</regex>
+
+<regex>
+<name>getUrl</name>
+<expres><![CDATA[#$pyFunction
+import re , requests ,json
+def GetLSProData(page_data,Cookie_Jar,m):
+
+ ref = 'http://kbagi.com/' 
+ url='http://kbagi.com[makelist.param1]'
+ headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux i686; rv:42.0) Gecko/20100101 Firefox/42.0 Iceweasel/42.0', 'Referer': ref ,
+            'X-Requested-With' : 'XMLHttpRequest' , 'Accept' : '*/*'}
+ session = requests.Session()
+ r = session.get(url, headers=headers)
+ rv1 = r.cookies
+
+ vfile , vtoken = re.findall('action/DownloadFile.*?fileId.*?value="(.*?)".*?Token".*?value="(.*?)"', r.text)[0]
+ data_a ={'fileId': vfile , '__RequestVerificationToken': vtoken}
+ nr = requests.post('http://kbagi.com/action/DownloadFile?location=fi&f=%s'%vfile , headers=headers,cookies=rv1 , data=data_a).text
+ nrj=json.loads(nr)
+ nr = nrj['Content']
+ r2 = re.findall(r'(?s)value=\"(.*?)\"', nr)[0]
+ data_a ={'__RequestVerificationToken': r2 , 'Username': 'amistad' , 'Password' : 'asegurada'}
+ nr1 = requests.post('http://kbagi.com/action/Account/Login', headers=headers,cookies = rv1 , data=data_a)
+ print nr1.headers['Set-Cookie']
+ rasp = re.findall('ASPXAUTH_v2=(.*?);', nr1.headers['Set-Cookie'])[0]
+ rv1['.ASPXAUTH_v2'] = rasp
+ data_a ={'fileId': vfile , '__RequestVerificationToken': vtoken}
+ nr3 = requests.post('http://kbagi.com/action/DownloadFile?location=fi&f=%s'%vfile , headers=headers, cookies = rv1 , data=data_a).text
+ r3 = re.findall('DownloadUrl":"(.*?)"', nr3)[0]
+ print r3
+ return r3
+]]></expres>
+<page></page>
+<cookieJar></cookieJar>
+</regex>
+<thumbnail>http://veremaspain.hol.es/addon/2vj3NGE.png</thumbnail>
+        <fanart>http://veremaspain.hol.es/addon/iXATBaG.jpg</fanart>
+</item>	
+
+<item>
+<title>[COLOR blue]Sala 3[/COLOR] </title>
+<link>$doregex[makelist3]</link>
+
+<regex>
+  <name>makelist3</name>
+  <listrepeat><![CDATA[
+        <title>[COLOR blue][makelist3.param2][/COLOR] </title>
+        <link>$doregex[makelist]</link>
+		<thumbnail></thumbnail>
+		<fanart></fanart>
+        ]]></listrepeat>
+<expres>sala3:"(.*?)" name:"(.*?)";</expres>
+<page>https://raw.githubusercontent.com/Carlesto/Peliculas/master/catoflix.txt</page>
+<cookieJar></cookieJar>
+</regex>
+
+<regex>
+  <name>makelist</name>
+  <listrepeat><![CDATA[
+        <title>[COLOR blue] [makelist.param3][/COLOR] </title>
+        <link>$doregex[getUrl]</link>
+		<thumbnail></thumbnail>
+		<fanart></fanart>
+        ]]></listrepeat>
+<expres><![CDATA[href="\/.*,(.*?),list.*\n.*\n.*\n.*href="\/([^"]*)".*?>(.*?)<]]></expres>
+<page>[makelist3.param1]/list,1,15</page>
+<cookieJar></cookieJar>
+</regex>
+<regex>
+<name>getUrl</name>
+<expres>DownloadUrl":"([^"]+)<expres>
+<page>http://diskokosmiko.mx/action/DownloadFile?location=fi&amp;f=[makelist.param1]</page>
+<rawpost>fileId=[makelist.param1]&amp;__RequestVerificationToken=$doregex[tok]</rawpost>
+<referer>http://diskokosmiko.mx/[makelist.param2]</referer>
+<connection>keep-alive</connection>
+<accept>*/*</accept>
+<X-Req>XMLHttpRequest</X-Req>
+<cookieJar></cookieJar>
+</regex>
+<regex>
+<name>tok</name>
+<expres>DownloadFile.*RequestVerificationToken.*?value="([^"]+)<expres>
+<page>http://diskokosmiko.mx/[makelist.param2]</page>
+<referer>http://diskokosmiko.mx[makelist2.param1]/list,1,15</referer>
+<connection>keep-alive</connection>
+<cookieJar></cookieJar>
+</regex>
+<thumbnail></thumbnail>
+<fanart></fanart>
+</item>		
+
+<item>
+<title>[COLOR blue]Sala 4[/COLOR] </title>
+<link>$doregex[makelist3]</link>
+
+<regex>
+  <name>makelist3</name>
+  <listrepeat><![CDATA[
+        <title>[COLOR blue][makelist3.param2][/COLOR] </title>
+        <link>$doregex[makelist]</link>
+		<thumbnail></thumbnail>
+		<fanart></fanart>
+        ]]></listrepeat>
+<expres>sala4:"(.*?)" name:"(.*?)";</expres>
+<page>https://raw.githubusercontent.com/Carlesto/Peliculas/master/catoflix.txt</page>
+<cookieJar></cookieJar>
+</regex>
+
+<regex>
+  <name>makelist</name>
+  <listrepeat><![CDATA[
+        <title>[COLOR blue] [makelist.param3][/COLOR] </title>
+        <link>$doregex[getUrl]</link>
+		<thumbnail></thumbnail>
+		<fanart></fanart>
+        ]]></listrepeat>
+<expres><![CDATA[href="\/.*,(.*?),list.*\n.*\n.*\n.*href="\/([^"]*)".*?>(.*?)<]]></expres>
+<page>[makelist3.param1]/list,1,15</page>
+<cookieJar></cookieJar>
+</regex>
+<regex>
+<name>getUrl</name>
+<expres>DownloadUrl":"([^"]+)<expres>
+<page>http://diskokosmiko.mx/action/DownloadFile?location=fi&amp;f=[makelist.param1]</page>
+<rawpost>fileId=[makelist.param1]&amp;__RequestVerificationToken=$doregex[tok]</rawpost>
+<referer>http://diskokosmiko.mx/[makelist.param2]</referer>
+<connection>keep-alive</connection>
+<accept>*/*</accept>
+<X-Req>XMLHttpRequest</X-Req>
+<cookieJar></cookieJar>
+</regex>
+<regex>
+<name>tok</name>
+<expres>DownloadFile.*RequestVerificationToken.*?value="([^"]+)<expres>
+<page>http://diskokosmiko.mx/[makelist.param2]</page>
+<referer>http://diskokosmiko.mx[makelist2.param1]/list,1,15</referer>
+<connection>keep-alive</connection>
+<cookieJar></cookieJar>
+</regex>
+<thumbnail></thumbnail>
+<fanart></fanart>
+</item>	
+
+<item>
+<title>[COLOR blue]Listas Telegram[/COLOR] </title>
+<link>http://Ignoreme</link>
+<externallink>http://veremaspain.hol.es/addon/peliculastelegram.xml</externallink>
+<thumbnail>http://raspberrypihelp.net/wp-content/uploads/2016/03/Telegram.jpg</thumbnail>
+<fanart>http://www.microsoftinsider.es/wp-content/uploads/2014/12/telegram-theme.jpg</fanart> 
+</item>
+
+<item>
+<title>[COLOR blue]PopCorn[/COLOR] </title>
+<link>$doregex[makelist]</link>
+<regex>
+  <name>makelist</name>
+  <listrepeat><![CDATA[
+        <title>[COLOR blue] [makelist.param3][/COLOR] </title>
+        <link>$doregex[getUrl]</link>
+        <thumbnail></thumbnail>
+		<fanart>https://1.bp.blogspot.com/-6QQ_fPhaDaE/V4gkTO7rbII/AAAAAAAAIvo/0Z5_N5E1RoscFN5ajNcAuZz-uE4FuqW9gCEw/s1600/fotografia-estrenos-del-2016_541067.jpg</fanart>
+]]></listrepeat>
+<expres><![CDATA[href="\/.*,(.*?),list.*\n.*\n.*\n.*href="\/([^"]*)".*?>(.*?)<]]></expres>
+<page>http://diskokosmiko.mx/trivianita/estrenos-de-cine-2-el-rockero-38410/list,1,21</page>
+<cookieJar></cookieJar>
+</regex>
+<regex>
+<name>getUrl</name>
+<expres>DownloadUrl":"([^"]+)<expres>
+<page>http://diskokosmiko.mx/action/DownloadFile?location=fi&amp;f=[makelist.param1]</page>
+<rawpost>fileId=[makelist.param1]&amp;__RequestVerificationToken=$doregex[tok]</rawpost>
+<referer>http://diskokosmiko.mx/[makelist.param2]</referer>
+<connection>keep-alive</connection>
+<accept>*/*</accept>
+<X-Req>XMLHttpRequest</X-Req>
+<cookieJar></cookieJar>
+</regex>
+<regex>
+<name>tok</name>
+<expres>DownloadFile.*RequestVerificationToken.*?value="([^"]+)<expres>
+<page>http://diskokosmiko.mx/[makelist.param2]</page>
+<referer>http://diskokosmiko.mx/trivianita/estrenos-de-cine-2-el-rockero-38410/list,1,21</referer>
+<connection>keep-alive</connection>
+<cookieJar></cookieJar>
+</regex>
+<thumbnail></thumbnail>
+<fanart>https://1.bp.blogspot.com/-6QQ_fPhaDaE/V4gkTO7rbII/AAAAAAAAIvo/0Z5_N5E1RoscFN5ajNcAuZz-uE4FuqW9gCEw/s1600/fotografia-estrenos-del-2016_541067.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]PopCorn +[/COLOR] </title>
+<link>$doregex[makelist]</link>
+<regex>
+  <name>makelist</name>
+  <listrepeat><![CDATA[
+        <title>[COLOR blue] [makelist.param3][/COLOR] </title>
+        <link>$doregex[getUrl]</link>
+        <thumbnail></thumbnail>
+		<fanart>https://1.bp.blogspot.com/-6QQ_fPhaDaE/V4gkTO7rbII/AAAAAAAAIvo/0Z5_N5E1RoscFN5ajNcAuZz-uE4FuqW9gCEw/s1600/fotografia-estrenos-del-2016_541067.jpg</fanart>
+]]></listrepeat>
+<expres><![CDATA[href="\/.*,(.*?),list.*\n.*\n.*\n.*href="\/([^"]*)".*?>(.*?)<]]></expres>
+<page>http://diskokosmiko.mx/trivianita/estrenos-de-cine-el-rockero-31846/list,1,21</page>
+<cookieJar></cookieJar>
+</regex>
+<regex>
+<name>getUrl</name>
+<expres>DownloadUrl":"([^"]+)<expres>
+<page>http://diskokosmiko.mx/action/DownloadFile?location=fi&amp;f=[makelist.param1]</page>
+<rawpost>fileId=[makelist.param1]&amp;__RequestVerificationToken=$doregex[tok]</rawpost>
+<referer>http://diskokosmiko.mx/[makelist.param2]</referer>
+<connection>keep-alive</connection>
+<accept>*/*</accept>
+<X-Req>XMLHttpRequest</X-Req>
+<cookieJar></cookieJar>
+</regex>
+<regex>
+<name>tok</name>
+<expres>DownloadFile.*RequestVerificationToken.*?value="([^"]+)<expres>
+<page>http://diskokosmiko.mx/[makelist.param2]</page>
+<referer>http://diskokosmiko.mx/trivianita/estrenos-de-cine-el-rockero-31846/list,1,21</referer>
+<connection>keep-alive</connection>
+<cookieJar></cookieJar>
+</regex>
+<thumbnail></thumbnail>
+<fanart>https://1.bp.blogspot.com/-6QQ_fPhaDaE/V4gkTO7rbII/AAAAAAAAIvo/0Z5_N5E1RoscFN5ajNcAuZz-uE4FuqW9gCEw/s1600/fotografia-estrenos-del-2016_541067.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Mi Seleccion[/COLOR] </title>
+<link>$doregex[makelist2]</link>
+<regex>
+  <name>makelist2</name>
+  <listrepeat><![CDATA[
+        <title>[COLOR blue][makelist2.param1][/COLOR] </title>
+        <link>$doregex[makelist]</link>
+		<thumbnail>http://www.dosbit.com/images/2013/08/Peliculas-33-e1376349018130.jpg</thumbnail>
+		<fanart>https://i.ytimg.com/vi/d2FQsrauvtE/maxresdefault.jpg</fanart>
+        ]]></listrepeat>
+<expres>250:"(.*?)" src="(.*?)"</expres>
+<page>https://raw.githubusercontent.com/Carlesto/Peliculas/master/Copiapopnew/sagas.txt</page>
+<cookieJar></cookieJar>
+</regex>
+
+<regex>
+  <name>makelist</name>
+  <listrepeat><![CDATA[
+        <title>[COLOR blue][makelist.param2][/COLOR] </title>
+        <link>$doregex[getUrl]</link>
+		<thumbnail>http://www.dosbit.com/images/2013/08/Peliculas-33-e1376349018130.jpg</thumbnail>
+		<fanart>https://i.ytimg.com/vi/d2FQsrauvtE/maxresdefault.jpg</fanart>
+        ]]></listrepeat>
+<expres><![CDATA[class="name[\w\W\s]{0,35}href="(.*?)"[\w\W\s]{0,50}preview">(.*?)<]]></expres>
+<page>[makelist2.param2]</page>
+<cookieJar></cookieJar>
+</regex>
+
+<regex>
+<name>getUrl</name>
+<expres><![CDATA[#$pyFunction
+import re , requests ,json
+def GetLSProData(page_data,Cookie_Jar,m):
+
+ ref = 'http://copiapop.com/' 
+ url='http://copiapop.com[makelist.param1]'
+ headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux i686; rv:42.0) Gecko/20100101 Firefox/42.0 Iceweasel/42.0', 'Referer': ref ,
+            'X-Requested-With' : 'XMLHttpRequest' , 'Accept' : '*/*'}
+ session = requests.Session()
+ r = session.get(url, headers=headers)
+ rv1 = r.cookies
+
+ vfile , vtoken = re.findall('action/DownloadFile.*?fileId.*?value="(.*?)".*?Token".*?value="(.*?)"', r.text)[0]
+ data_a ={'fileId': vfile , '__RequestVerificationToken': vtoken}
+ nr = requests.post('http://copiapop.com/action/DownloadFile?location=fi&f=%s'%vfile , headers=headers,cookies=rv1 , data=data_a).text
+ nrj=json.loads(nr)
+ nr = nrj['Content']
+ r2 = re.findall(r'(?s)value=\"(.*?)\"', nr)[0]
+ data_a ={'__RequestVerificationToken': r2 , 'Username': 'amistad' , 'Password' : 'asegurada'}
+ nr1 = requests.post('http://copiapop.com/action/Account/Login', headers=headers,cookies = rv1 , data=data_a)
+ print nr1.headers['Set-Cookie']
+ rasp = re.findall('ASPXAUTH_v2=(.*?);', nr1.headers['Set-Cookie'])[0]
+ rv1['.ASPXAUTH_v2'] = rasp
+ data_a ={'fileId': vfile , '__RequestVerificationToken': vtoken}
+ nr3 = requests.post('http://copiapop.com/action/DownloadFile?location=fi&f=%s'%vfile , headers=headers, cookies = rv1 , data=data_a).text
+ r3 = re.findall('DownloadUrl":"(.*?)"', nr3)[0]
+ print r3
+ return r3
+]]></expres>
+<page></page>
+<cookieJar></cookieJar>
+</regex>
+<thumbnail>http://www.dosbit.com/images/2013/08/Peliculas-33-e1376349018130.jpg</thumbnail>
+		<fanart>https://i.ytimg.com/vi/d2FQsrauvtE/maxresdefault.jpg</fanart>
+</item>		
+
+<item>
+<title>[COLOR blue]Sagas[/COLOR] </title>
+<link>http://Ignoreme</link>
+<externallink>http://veremaspain.hol.es/addon/Sagas.xml</externallink>
+<thumbnail>http://i.imgur.com/ZB4gIOA.jpg</thumbnail>
+<fanart>http://i.imgur.com/ZB4gIOA.jpg</fanart> 
+</item>
+
+
+
+<item>
+<title>[COLOR blue]Acción[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=4</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Animación[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=6</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Aventuras[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=5</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Bélico[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=13</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Ciencia ficción[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=8</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Cine negro[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=16</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Comedia[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=2</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Documental[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=17</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Drama[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=3</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Estrenos[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.pelisalacarta/?ewogICAgImFjdGlvbiI6ICJlbnRyYWRhcyIsIAogICAgImNhdGVnb3J5IjogIklua2FwZWxpcyIsIAogICAgImNoYW5uZWwiOiAiaW5rYXBlbGlzIiwgCiAgICAiZmFuYXJ0IjogIiIsIAogICAgImluZm9MYWJlbHMiOiB7fSwgCiAgICAibGFuZ3VhZ2UiOiAiZXMiLCAKICAgICJ0ZXh0X2NvbG9yIjogIjB4RkZGRkU2Q0MiLCAKICAgICJ0aHVtYm5haWwiOiAiaHR0cDovL2kuaW1ndXIuY29tL0k3TXhIWkkucG5nIiwgCiAgICAidGl0bGUiOiAiW0NPTE9SIDB4RkZGRkU2Q0NdRXN0cmVub3NbL0NPTE9SXSIsIAogICAgInRvdGFsSXRlbXMiOiAwLCAKICAgICJ1cmwiOiAiaHR0cDovL3d3dy5pbmthcGVsaXMuY29tL2dlbmVyby9lc3RyZW5vcy8iLCAKICAgICJ2aWV3bW9kZSI6ICJsaXN0Igp9</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Fantástico[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=9</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Infantil[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=7</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Intriga[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=10</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Musical[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=15</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Romance[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=1</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Serie de TV[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=18</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Terror[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=11</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Thriller[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=12</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
+
+<item>
+<title>[COLOR blue]Western[/COLOR] </title>
+<link>ignorme</link>
+<jsonrpc>plugin://plugin.video.cine/?action=genero2&amp;idgen=14</jsonrpc>
+<thumbnail>http://www.infopeliculas.es/wp-content/uploads/2014/07/clasicos-del-cine-de-los-ochenta.png</thumbnail>
+<fanart>http://revistaindependientes.com/wp-content/uploads/2013/12/Cine.jpg</fanart>
+</item>
